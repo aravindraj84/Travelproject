@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 def login(request):
     if request.method=='POST':
         username=request.POST['username']
-        password=request.POST('password')
+        password=request.POST.get('password')
         user=auth.authenticate(username=username,password=password)
 
         if user is not None:
@@ -15,7 +15,7 @@ def login(request):
             return redirect('/')
         else:
             messages.info(request,"Invalid Credentials")
-            return redirect('Login')
+            return redirect('login')
 
 
 
